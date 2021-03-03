@@ -1,15 +1,12 @@
-
 <?php
 require ('config/config.php');
 session_start();
-if(isset($_SESSION['id']) && $_SESSION['pseudo'] != "") {
+if(isset($_SESSION['id']) && $_SESSION['pseudo']!= "") {
     echo "";
   } else { 
     header('location:login/login.php');
   }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
