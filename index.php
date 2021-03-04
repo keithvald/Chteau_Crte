@@ -17,7 +17,8 @@ if(isset($_SESSION['id']) && $_SESSION['pseudo']!= "") {
 </head>
 <body>
     <a>Bienvenue <?php echo $_SESSION['pseudo'];?></a>
-    <h4><a href="logout.php">Logout</a></h4>
+    <h4><a href="register/register.php">Logout</a></h4>
+   <p>Vous souhaitez réinitialiser le mot de passe ?<a href="reset/reset.php"> Cliquez-ici.</a></p>
 </body>
 </html>
 </html>

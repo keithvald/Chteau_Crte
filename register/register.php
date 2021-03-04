@@ -4,16 +4,20 @@ session_start();
 
 if (!empty($_POST['nom']) & !empty($_POST['pseudo']) & !empty($_POST['mail']) & !empty($_POST['motdepasse'])){
     try {
-        $name = $_POST['nom'];
-        $username = $_POST['pseudo'];
-        $mail = $_POST['mail'];
+        $name = htmlspecialchars($_POST['nom']);
+        $username = htmlspecialchars($_POST['pseudo']);
+        $mail = htmlspecialchars($_POST['mail']);
         $password = password_hash($_POST['motdepasse'], PASSWORD_DEFAULT);
-        $sth = $conn->prepare("INSERT INTO `Client`(`nom`,`pseudo`,`mail`, `motdepasse`) VALUES (:nom, :pseudo, :mail, :motdepasse)");
-        $sth->bindParam(':nom', $name);
-        $sth->bindParam(':pseudo', $username);
-        $sth->bindParam(':mail', $mail);
-        $sth->bindParam(':motdepasse', $password);
-        $sth->execute();
+        $token = bin2hex(openssl_random_pseudo_bytes(24));
+        $sth = $conn->prepare("INSERT INTO Client(nom ,pseudo , mail, motdepasse, token) VALUES (:nom, :pseudo, :mail, :motdepasse, :token)");
+        $sth->execute(array(
+        'nom' => $name,
+        'pseudo' => $username,
+        'mail' => $mail,
+        'motdepasse' => $password,
+        'token' => $token
+    ));
+        
         header('location: ../login/login.php');
     }catch (PDOException $e){
         print "Erreur !: " . $e->getMessage() . "<br/>";

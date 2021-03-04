@@ -40,7 +40,7 @@ if (isset($_POST['pseudo']) & isset($_POST['motdepasse'])){
         <input type="password" placeolder="motdepasse" name="motdepasse"></input>
         <button type="submit">Connexion</button>
         <p>Vous ne possédez pas de compte ?<a href="../register/register.php"> Inscrivez-vous ici.</a></p>
-        <p>Vous avez oublié votre mot de passe ?<a href="../reset/reset.php"> Cliquez-ici.</a></p>
+        <p>Vous avez oublié votre mot de passe ?<a href="../forgot_password/index.php"> Cliquez-ici.</a></p>
     </form>
 </body>
 </html>
